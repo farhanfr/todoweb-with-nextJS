@@ -2,8 +2,9 @@
 import { deleteTodo, getTodos } from '@/app/api/todoApi'
 import { deleteTodoOptions } from '@/app/api/todoSWROptions'
 import ErrorUI from '@/app/components/ErrorUI'
-import GeneralButton from '@/app/components/generalButton'
-import LoadingSpinner from '@/app/components/loadingSpinner'
+import GeneralButton from '@/app/components/GeneralButton'
+import LoadingSpinner from '@/app/components/LoadingSpinner'
+import { FETCHING_TODO } from '@/app/utils/SWRkey'
 import Link from 'next/link'
 
 import { useRouter } from 'next/navigation'
@@ -14,7 +15,7 @@ export default function ListTodoPage() {
 
   const router = useRouter()
 
-  const { isLoading: todosLoading, data: dataTodos,isValidating, error: todosError,mutate} = useSWR('fetchingTodo', getTodos, {
+  const { isLoading: todosLoading, data: dataTodos,isValidating, error: todosError,mutate} = useSWR(FETCHING_TODO, getTodos, {
     onSuccess: data => data.sort((a, b) => b.id - a.id),
     revalidateIfStale: true,
     revalidateOnFocus: false,
