@@ -52,8 +52,7 @@ const HorizontalProductList = ({ listProductData }) => {
     }
  
     useEffect(() => { 
-        generateChunks(listProductData,5) 
-        console.log("HALO====")        
+        generateChunks(listProductData,5)      
     }, [])
 
 
